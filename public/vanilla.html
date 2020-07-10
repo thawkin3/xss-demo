@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <h1>Vanilla JS XSS Demo</h1>
+
+    <div>
+      <h2>Bad Example</h2>
+      <form id="formBad">
+        <label>Search here<input id="inputBad" /></label>
+        <button type="submit">Go</button>
+      </form>
+      <p>You searched for: <span id="searchResultsBad"></span></p>
+    </div>
+
+    <hr />
+
+    <div>
+      <h2>Good Example</h2>
+      <form id="formGood">
+        <label>Search here<input id="inputGood" /></label>
+        <button type="submit">Go</button>
+      </form>
+      <p>You searched for: <span id="searchResultsGood"></span></p>
+    </div>
+
+    <script>
+      (function (){
+        const formBad = document.querySelector('#formBad')
+        const inputBad = document.querySelector('#inputBad')
+        const searchResultsBad = document.querySelector('#searchResultsBad')
+
+        formBad.addEventListener('submit', e => {
+          e.preventDefault()
+          searchResultsBad.innerHTML = inputBad.value
+        })
+
+        const formGood = document.querySelector('#formGood')
+        const inputGood = document.querySelector('#inputGood')
+        const searchResultsGood = document.querySelector('#searchResultsGood')
+      
+        formGood.addEventListener('submit', e => {
+          e.preventDefault()
+          searchResultsGood.textContent = inputGood.value
+        })
+      })()
+    </script>
+  </body>
+</html>
