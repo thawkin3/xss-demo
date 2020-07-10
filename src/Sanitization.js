@@ -22,6 +22,7 @@ export const Sanitization = () => {
           <tr>
             <th style={tableStyle}>Input</th>
             <th style={tableStyle}>Output</th>
+            <th style={tableStyle}>Rendered As</th>
           </tr>
         </thead>
         <tbody>
@@ -29,6 +30,7 @@ export const Sanitization = () => {
             <tr key={text}>
               <td style={tableStyle}>{text}</td>
               <td style={tableStyle}>{sanitize(text)}</td>
+              <td style={tableStyle} dangerouslySetInnerHTML={{ __html: sanitize(text) }} />
             </tr>
           ))}
         </tbody>
